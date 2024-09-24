@@ -95,19 +95,19 @@ def get_superconducting_density(L_x, L_y, w_s, w_S, mu, Delta, B_x,
     return n_s_xx, n_s_yy, n_s_xy
     
 if __name__ == "__main__":
-    L_x = 5#400
-    L_y = 5#400
+    L_x = 400
+    L_y = 400
     w_s = 10
     w_S = 20
     w_1 = 0.8
     Delta = 0.2 # 0.2 ###############Normal state
-    mu = -40#2*(20*Delta-2*w_0)
+    mu = -39#2*(20*Delta-2*w_0)
     theta = np.pi/2
     Lambda = 0.56#5*Delta/np.sqrt((4*w_0 + mu)/w_0)/2
     h = 1e-2
     k_x_values = 2*np.pi/L_x*np.arange(0, L_x)
     k_y_values = 2*np.pi/L_y*np.arange(0, L_y)
-    n_cores = 8
+    n_cores = 10
     params = {"L_x": L_x, "L_y": L_y, "w_s": w_s,
               "mu": mu, "Delta": Delta, "theta": theta,
                "Lambda": Lambda,
@@ -122,7 +122,7 @@ if __name__ == "__main__":
                        B_y, Lambda, w_1, h)
         return n
     
-    B_values = np.linspace(0, 3*Delta, 8)
+    B_values = np.linspace(0, 3*Delta, 10)
     with multiprocessing.Pool(n_cores) as pool:
         results_pooled = pool.map(integrate, B_values)
     n_B_y = np.array(results_pooled)

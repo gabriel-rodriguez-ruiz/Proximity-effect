@@ -14,8 +14,8 @@ import matplotlib.pyplot as plt
 from hamiltonian import get_Hamiltonian
 from functions import get_superconducting_density
 
-L_x = 200#400
-L_y = 200#400
+L_x = 30#400
+L_y = 30#400
 w_s = 10
 w_S = 20
 w_1 = 0.8
@@ -40,7 +40,7 @@ def integrate(B):
                    B_y, Lambda, w_1, h)
     return n
 
-B_values = np.linspace(0, 3*Delta, 8)
+B_values = np.linspace(0, 3*Delta, 10)
 n_B_y = np.zeros((len(B_values), 3))
 
 for i, B_value in enumerate(B_values):
