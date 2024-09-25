@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 
 data_folder = Path("Data/")
-name = "n_By_mu_-40_L=30_h=0.001_B_y_in_(0.0-0.2)_Delta=0.2_lambda=0.56_w_s=10_w_S=20_w_1=0.8.npz"
+name = "n_By_mu_-40_L=100_h=0.01_B_y_in_(0.0-0.6)_Delta=0.2_lambda=0.56_w_s=0_w_S=10_w_1=0.npz"
 file_to_open = data_folder / name
 
 data = np.load(file_to_open)

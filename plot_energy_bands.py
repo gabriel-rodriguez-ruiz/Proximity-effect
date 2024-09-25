@@ -19,14 +19,14 @@ k_y_values = np.pi*np.arange(-L_y, L_y)/L_y
 k_y = [0]
 phi_x = [0]
 phi_y = [0]
-w_s = 10
-w_S = 20
+w_s = 0#10
+w_S = 10#20
 Delta = 0.2
 mu = -40
 B_x = 0
-B_y = 0.4
+B_y = 0
 Lambda = 0.56
-w_1 = 0.8
+w_1 = 0
 
 #%% Plot energy bands
 
@@ -34,7 +34,7 @@ fig, ax = plt.subplots(1, 2)
 ax1 = ax[0]
 ax2 = ax[1]
 for i in range(8):
-    L_x = 1000
+    L_x = 500
     k_x = np.pi*np.arange(-L_x, L_x)/L_x
     Energy = get_energy(k_x, k_y, phi_x, phi_y, w_s, w_S, mu, Delta, B_x,
                    B_y, Lambda, w_1)

@@ -33,6 +33,10 @@ def get_Hamiltonian(k_x, k_y, phi_x, phi_y, w_s, w_S, mu, Delta, B_x, B_y,
         -\mu\tau_z\sigma_0
         + \Delta \tau_x\sigma_0
         
+        H_{w_1} = -w_1 \alpha_x\tau_z\sigma_0
+            /H_s     H_{w_1}
+        H = \H_{w_1}    H_S
+            
     """
     H_s = (
         -2*w_s*((np.cos(k_x)*np.cos(phi_x) + np.cos(k_y)*np.cos(phi_y))

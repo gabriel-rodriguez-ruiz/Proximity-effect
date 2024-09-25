@@ -37,26 +37,3 @@ def get_superconducting_density(L_x, L_y, w_s, w_S, mu, Delta, B_x,
     n_s_yy = 1/w_S * 1/(L_x*L_y) * ( fundamental_energy[1,2] - 2*fundamental_energy[1,1] + fundamental_energy[1,0]) / h**2
     n_s_xy = 1/w_S * 1/(L_x*L_y) * ( fundamental_energy[2,2] - fundamental_energy[2,0] - fundamental_energy[0,2] + fundamental_energy[0,0]) / h**2
     return n_s_xx, n_s_yy, n_s_xy
-
-def get_Green_function(omega, k_x_values, k_y_values, w_s, w_S, mu, Delta, B_x, B_y,
-                    Lambda, w_1):
-    G = np.zeros((len(k_x_values), len(k_y_values),
-                  4, 4), dtype=complex)
-    for i, k_x in enumerate(k_x_values):
-        for j, k_y in enumerate(k_y_values):
-            for l in range(4):
-                for m in range(4):
-                    G[i, j, l, m] = np.linalg.inv(omega*np.kron(tau_0, sigma_0)
-                                                  - get_Hamiltonian(k_x, k_y, 0, 0, w_s, w_S, mu, Delta, B_x, B_y,
-                                                                      Lambda, w_1) 
-                                                  )[l, m]                
-    return G
-
-def get_DOS(omega, eta, L_x, L_y, w_s, w_S, mu, Delta, B_x, B_y,
-                    Lambda, w_1):
-    k_x_values = 2*np.pi/L_x*np.arange(0, L_x)
-    k_y_values = 2*np.pi/L_y*np.arange(0, L_y)
-    G = get_Green_function(omega+1j*eta, k_x_values, k_y_values, w_s, w_S, mu, Delta, B_x, B_y,
-                        Lambda, w_1)
-    return 1/(L_x*L_y) * 1/np.pi*np.sum(-np.imag(G), axis=(0,1))
-
