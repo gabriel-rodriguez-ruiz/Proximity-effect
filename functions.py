@@ -59,3 +59,4 @@ def get_DOS(omega, eta, L_x, L_y, w_s, w_S, mu, Delta, B_x, B_y,
     G = get_Green_function(omega+1j*eta, k_x_values, k_y_values, w_s, w_S, mu, Delta, B_x, B_y,
                         Lambda, w_1)
     return 1/(L_x*L_y) * 1/np.pi*np.sum(-np.imag(G), axis=(0,1))
+

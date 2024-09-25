@@ -12,8 +12,8 @@ import scipy
 from functions import get_energy
 
 #%% Parameters
-L_x = 50
-L_y = 50
+L_x = 10
+L_y = 10
 k_x_values = np.pi*np.arange(-L_x, L_x)/L_x
 k_y_values = np.pi*np.arange(-L_y, L_y)/L_y
 k_y = [0]
@@ -22,7 +22,7 @@ phi_y = [0]
 w_s = 10
 w_S = 20
 Delta = 0.2
-mu = -39
+mu = -40
 B_x = 0
 B_y = 0.4
 Lambda = 0.56
@@ -30,16 +30,19 @@ w_1 = 0.8
 
 #%% Plot energy bands
 
-E = get_energy(k_x_values, k_y_values, phi_x, phi_y, w_s, w_S, mu, Delta, B_x,
-               B_y, Lambda, w_1)
-
 fig, ax = plt.subplots(1, 2)
 ax1 = ax[0]
 ax2 = ax[1]
 for i in range(8):
-    Energy = get_energy(k_x_values, k_y, phi_x, phi_y, w_s, w_S, mu, Delta, B_x,
+    L_x = 1000
+    k_x = np.pi*np.arange(-L_x, L_x)/L_x
+    Energy = get_energy(k_x, k_y, phi_x, phi_y, w_s, w_S, mu, Delta, B_x,
                    B_y, Lambda, w_1)
-    ax1.plot(k_x_values, Energy[:, 0, 0, 0, i] )
+    ax1.plot(k_x, Energy[:, 0, 0, 0, i] )
+
+
+E = get_energy(k_x_values, k_y_values, phi_x, phi_y, w_s, w_S, mu, Delta, B_x,
+               B_y, Lambda, w_1)
 
 ax1.set_xlabel(r"$k_x$")
 ax1.set_ylabel(r"$E(k_x,k_y=$"+f"{np.round(k_y[0],2)})")
@@ -57,5 +60,6 @@ fig.suptitle(r"$\lambda=$" + f"{np.round(Lambda,2)}"
              +r"; $\Delta=$" + f"{Delta}"
              + r"; $\mu=$"+f"{mu}"
              +r"; $w_s=$"+f"{w_s}" + r"; $w_S=$"+ f"{w_S}"
-             +r"; $B_y=$"+f"{np.round(B_y, 2)}")
+             +r"; $B_y=$"+f"{np.round(B_y, 2)}"
+             +r"; $w_1=$" + f"{w_1}")
 plt.tight_layout()
