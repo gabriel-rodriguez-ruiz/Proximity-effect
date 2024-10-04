@@ -14,17 +14,17 @@ import scipy
 import matplotlib.pyplot as plt
 from functions import get_superconducting_density
 
-L_x = 100
+L_x = 400
 L_y = L_x
 w_s = 10
 w_S = 20#20
-w_1 = 0
-Delta_s = 0.2 # 0.2 ###############Normal state
+w_1 = 1
+Delta_s = 0 # 0.2 ###############Normal state
 Delta_S = 0.2
 mu = -40#2*(20*Delta-2*w_0)
 theta = np.pi/2
 Lambda = 0.56#5*Delta/np.sqrt((4*w_0 + mu)/w_0)/2
-h = 1e-2
+h = 1e-4
 k_x_values = 2*np.pi/L_x*np.arange(0, L_x)
 k_y_values = 2*np.pi/L_y*np.arange(0, L_y)
 n_cores = 8
@@ -44,7 +44,7 @@ def integrate(B):
     return n
 
 if __name__ == "__main__":
-    B_values = np.linspace(0, 3*Delta_S, n_cores)
+    B_values = np.linspace(0, 1/2*Delta_S, n_cores)
     with multiprocessing.Pool(n_cores) as pool:
         results_pooled = pool.map(integrate, B_values)
     n_B_y = np.array(results_pooled)

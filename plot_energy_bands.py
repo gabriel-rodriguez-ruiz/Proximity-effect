@@ -21,13 +21,13 @@ phi_x = [0]
 phi_y = [0]
 w_s = 10#10
 w_S = 20#20
-Delta_s = 0.2
+Delta_s = 0
 Delta_S = 0.2
 mu = -40
 B_x = 0
-B_y = 0.4
+B_y = 0.6
 Lambda = 0.56
-w_1 = 0
+w_1 = 1
 
 #%% Plot energy bands
 
