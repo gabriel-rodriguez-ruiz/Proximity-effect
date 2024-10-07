@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 from pauli_matrices import tau_0, sigma_0, tau_z, sigma_x, sigma_y, tau_y, tau_x
 import scipy
 from functions import get_energy
-
+    
 #%% Parameters
 L_x = 10
 L_y = 10
@@ -23,41 +23,23 @@ w_s = 10#10
 w_S = 20#20
 Delta_s = 0
 Delta_S = 0.2
-mu = -40
+mu = -39
 B_x = 0
-B_y = 0.6
+B_y = 0
 Lambda = 0.56
-w_1 = 1
+w_1 = [3.4]
 
 #%% Plot energy bands
 
-fig, ax = plt.subplots(1, 2)
-ax1 = ax[0]
-ax2 = ax[1]
-for i in range(8):
-    L_x = 500
-    k_x = np.pi*np.arange(-L_x, L_x)/L_x
-    Energy = get_energy(k_x, k_y, phi_x, phi_y, w_s, w_S,
-                        mu, Delta_s, Delta_S, B_x,
-                        B_y, Lambda, w_1)
-    ax1.plot(k_x, Energy[:, 0, 0, 0, i] )
-
-
-E = get_energy(k_x_values, k_y_values, phi_x, phi_y, w_s, w_S,
-                    mu, Delta_s, Delta_S, B_x,
-                    B_y, Lambda, w_1)
-
-ax1.set_xlabel(r"$k_x$")
-ax1.set_ylabel(r"$E(k_x,k_y=$"+f"{np.round(k_y[0],2)})")
-X, Y = np.meshgrid(k_x_values, k_y_values)
-C1 = ax2.contour(Y, X, E[:,:,0,0,3]>0, 0, colors="C3") #notice the inversion of X and Y
-C2 = ax2.contour(Y, X, E[:,:,0,0,4]<0, 0, colors="C4")
-C3 = ax2.contour(Y, X, E[:,:,0,0,2], 10, colors="C2")
-ax2.clabel(C1, inline=True, fontsize=10)
-ax2.clabel(C2, inline=True, fontsize=10)
-ax2.clabel(C3, inline=True, fontsize=10)
-ax2.set_xlabel(r"$k_x$")
-ax2.set_ylabel(r"$k_y$")
+fig, ax = plt.subplots()
+for w in w_1:
+    for i in range(8):
+        L_x = 1000
+        k_x = np.pi*np.arange(-L_x, L_x)/L_x
+        Energy = get_energy(k_x, k_y, phi_x, phi_y, w_s, w_S,
+                            mu, Delta_s, Delta_S, B_x,
+                            B_y, Lambda, w)
+        ax.plot(k_x, Energy[:, 0, 0, 0, i] , label=f"{w}")
 
 fig.suptitle(r"$\lambda=$" + f"{np.round(Lambda,2)}"
              +r"; $\Delta=$" + f"{Delta_S}"
@@ -66,3 +48,6 @@ fig.suptitle(r"$\lambda=$" + f"{np.round(Lambda,2)}"
              +r"; $B_y=$"+f"{np.round(B_y, 2)}"
              +r"; $w_1=$" + f"{w_1}")
 plt.tight_layout()
+ax.set_xlabel(r"$k_x$")
+ax.set_ylabel(r"$E(k_x=0, k_y)$")
+# plt.legend()
