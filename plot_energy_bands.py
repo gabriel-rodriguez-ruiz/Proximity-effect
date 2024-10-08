@@ -23,11 +23,11 @@ w_s = 10#10
 w_S = 20#20
 Delta_s = 0
 Delta_S = 0.2
-mu = -39
+mu = -40
 B_x = 0
 B_y = 0
 Lambda = 0.56
-w_1 = [3.4]
+w_1 = [1.5]
 
 #%% Plot energy bands
 

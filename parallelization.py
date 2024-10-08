@@ -46,7 +46,7 @@ def integrate(B):
     return n
 
 if __name__ == "__main__":
-    B_values = np.linspace(0, Delta_S, points)
+    B_values = np.linspace(0, 3*Delta_S, points)
     with multiprocessing.Pool(n_cores) as pool:
         results_pooled = pool.map(integrate, B_values)
     n_B_y = np.array(results_pooled)
