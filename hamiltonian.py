@@ -7,7 +7,7 @@ Created on Mon Sep 23 09:43:29 2024
 import numpy as np
 from pauli_matrices import (tau_0, sigma_0, tau_z, sigma_x, sigma_y, tau_x)
 
-def get_Hamiltonian(k_x, k_y, phi_x, phi_y, w_s, w_S, mu, Delta_s, Delta_S, B_x, B_y,
+def get_Hamiltonian(k_x, k_y, phi_x, phi_y, w_s, w_S, mu, Delta_s, Delta_S, B_x, B_y, B_x_S, B_y_S,
                     Lambda, w_1):
     r""" A semiconductor plane over a superconductor plane. The semiconductor
     has spin-orbit coupling and magnetic field.
@@ -57,7 +57,7 @@ def get_Hamiltonian(k_x, k_y, phi_x, phi_y, w_s, w_S, mu, Delta_s, Delta_S, B_x,
         #             + np.cos(k_x)*np.sin(phi_x) * np.kron(tau_0, sigma_y)
         #             - np.sin(k_y)*np.cos(phi_y) * np.kron(tau_z, sigma_x)
         #             - np.cos(k_y)*np.sin(phi_y) * np.kron(tau_0, sigma_x))
-        # - B_x*np.kron(tau_0, sigma_x) - B_y*np.kron(tau_0, sigma_y)
+        - B_x_S*np.kron(tau_0, sigma_x) - B_y_S*np.kron(tau_0, sigma_y)
         + Delta_S*np.kron(tau_x, sigma_0)
             ) * 1/2
     H_w_1 = -w_1 * np.kron(tau_z, sigma_0)
