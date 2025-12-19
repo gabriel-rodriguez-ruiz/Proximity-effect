@@ -39,12 +39,18 @@ w_1 = [0.25]
 fig, ax = plt.subplots()
 for w in w_1:
     for i in range(8):
-        L_x = 1000
+        L_x = 1z00
         k_x = np.pi*np.arange(-L_x, L_x)/L_x
         Energy = get_energy(k_x, k_y, phi_x, phi_y, w_s, w_S,
+<<<<<<< HEAD
                             mu_s, mu_S, Delta_s, Delta_S, B_x,
                             B_y, B_x_S, B_y_S, Lambda, w, q_x, q_y)
         ax.plot(k_x/np.pi, Energy[:, 0, 0, 0, 0, 0, i], label=f"{w}")
+=======
+                            mu, Delta_s, Delta_S, B_x,
+                            B_y, B_x, B_y, Lambda, w)
+        ax.plot(k_x, Energy[:, 0, 0, 0, i] , label=f"{w}")
+>>>>>>> 12a7d3c2e6ed0c1033a860849f3b816bf5a5700d
 
 fig.suptitle(r"$\lambda=$" + f"{np.round(Lambda,2)}"
              +r"; $\Delta=$" + f"{Delta_S}"
